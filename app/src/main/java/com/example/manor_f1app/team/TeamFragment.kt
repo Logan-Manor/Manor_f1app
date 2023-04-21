@@ -1,4 +1,4 @@
-package com.example.manor_f1app.driver
+package com.example.manor_f1app.team
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.example.manor_f1app.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -18,11 +17,11 @@ import com.example.manor_f1app.R
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-private lateinit var viewModel : DriverViewModel
-private lateinit var driverRecyclerView: RecyclerView
-lateinit var adapter: DriverAdapter
+private lateinit var viewModel : TeamViewModel
+private lateinit var teamRecyclerView: RecyclerView
+lateinit var adapter: TeamAdapter
 
-class DriverFragment : Fragment(), DriverAdapter.MyClickListener {
+class TeamFragment : Fragment(), TeamAdapter.MyClickListener {
 
 
     // TODO: Rename and change types of parameters
@@ -57,7 +56,7 @@ class DriverFragment : Fragment(), DriverAdapter.MyClickListener {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            DriverFragment().apply {
+            TeamFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
@@ -68,37 +67,37 @@ class DriverFragment : Fragment(), DriverAdapter.MyClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        driverRecyclerView = view.findViewById(R.id.recyclerview)
-        driverRecyclerView.layoutManager = LinearLayoutManager(context)
-        driverRecyclerView.setHasFixedSize(true)
-        adapter = DriverAdapter(this@DriverFragment)
-        driverRecyclerView.adapter = adapter
+        teamRecyclerView = view.findViewById(R.id.recyclerview)
+        teamRecyclerView.layoutManager = LinearLayoutManager(context)
+        teamRecyclerView.setHasFixedSize(true)
+        adapter = TeamAdapter(this@TeamFragment)
+        teamRecyclerView.adapter = adapter
 
-        viewModel = ViewModelProvider(this).get(DriverViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(TeamViewModel::class.java)
 
-        viewModel.allDrivers.observe(viewLifecycleOwner, Observer {
+        viewModel.allTeams.observe(viewLifecycleOwner, Observer {
 
-            adapter.updateDriverList(it)
+            adapter.updateTeamList(it)
 
         })
 
     }
 
-    override fun onClick(rank: Int?, firstname: String?, lastname: String?, teamname: String?, number: Int?, championships: Int?) {
+    override fun onClick(rank: Int?, name: String?, chief: String?, driver1: String?, driver2: String?, championships: Int?) {
 
         val rankInput = rank.toString()
-        val firstnameInput = firstname.toString()
-        val lastnameInput = lastname.toString()
-        val teamnameInput = teamname.toString()
-        val numberInput = number.toString()
+        val nameInput = name.toString()
+        val chiefInput = chief.toString()
+        val driver1Input = driver1.toString()
+        val driver2Input = driver2.toString()
         val championshipsInput = championships.toString()
 
-        Intent(activity, DriverDetailActivity::class.java).also {
+        Intent(activity, TeamDetailActivity::class.java).also {
             it.putExtra("rank", rankInput)
-            it.putExtra("firstname", firstnameInput)
-            it.putExtra("lastname", lastnameInput)
-            it.putExtra("teamname", teamnameInput)
-            it.putExtra("number", numberInput)
+            it.putExtra("name", nameInput)
+            it.putExtra("chief", chiefInput)
+            it.putExtra("driver1", driver1Input)
+            it.putExtra("driver2", driver2Input)
             it.putExtra("championships", championshipsInput)
             startActivity(it)
         }
