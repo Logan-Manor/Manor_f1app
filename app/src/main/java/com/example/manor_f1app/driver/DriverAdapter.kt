@@ -1,5 +1,6 @@
 package com.example.manor_f1app.driver
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,13 +49,22 @@ class DriverAdapter(private val listener: MyClickListener) : RecyclerView.Adapte
         init {
             itemView.setOnClickListener {
                 val position = adapterPosition
-                listener.onClick(position)
+                val data = driverList.get(position)
+
+                val rank = data.rank
+                val firstname = data.firstname.toString()
+                val lastname = data.lastname.toString()
+                val teamname = data.teamname.toString()
+                val number = data.number
+                val championships = data.championships
+
+                listener.onClick(rank, firstname, lastname, teamname, number, championships)
             }
         }
     }
 
     interface MyClickListener{
-        fun onClick(position: Int)
+        fun onClick(rank: Int?, firstname: String?, lastname: String?, teamname: String?, number: Int?, championships: Int?)
     }
 
 }

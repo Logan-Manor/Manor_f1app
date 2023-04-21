@@ -2,6 +2,7 @@ package com.example.manor_f1app.driver
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -90,9 +91,22 @@ class DriverFragment : Fragment(), DriverAdapter.MyClickListener {
 
     }
 
-    override fun onClick(position: Int) {
+    override fun onClick(rank: Int?, firstname: String?, lastname: String?, teamname: String?, number: Int?, championships: Int?) {
+
+        val rankInput = rank.toString()
+        val firstnameInput = firstname.toString()
+        val lastnameInput = lastname.toString()
+        val teamnameInput = teamname.toString()
+        val numberInput = number.toString()
+        val championshipsInput = championships.toString()
+
         Intent(activity, DriverDetailActivity::class.java).also {
-            it.putExtra("position", position)
+            it.putExtra("rank", rankInput)
+            it.putExtra("firstname", firstnameInput)
+            it.putExtra("lastname", lastnameInput)
+            it.putExtra("teamname", teamnameInput)
+            it.putExtra("number", numberInput)
+            it.putExtra("championships", championshipsInput)
             startActivity(it)
         }
     }

@@ -2,6 +2,7 @@ package com.example.manor_f1app.repository
 
 import androidx.lifecycle.MutableLiveData
 import com.example.manor_f1app.driver.Driver
+import com.example.manor_f1app.team.Team
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -11,7 +12,7 @@ import java.lang.Exception
 
 class DriverRepository {
 
-    private val databaseReference : DatabaseReference = FirebaseDatabase.getInstance().getReference("Driver")
+    private val driverReference : DatabaseReference = FirebaseDatabase.getInstance().getReference("Driver")
 
     @Volatile private var INSTANCE : DriverRepository?= null
 
@@ -25,7 +26,7 @@ class DriverRepository {
 
     fun loadDrivers(driverList : MutableLiveData<List<Driver>>){
 
-        databaseReference.addValueEventListener(object : ValueEventListener{
+        driverReference.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 try {
@@ -41,15 +42,38 @@ class DriverRepository {
                 }catch (e : Exception){
 
                 }
-
             }
-
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-
         })
-
     }
+
+    fun loadTeams(teamList : MutableLiveData<List<Team>>){
+
+        driverReference.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                try {
+
+                    val _teamList : List<Team> = snapshot.children.map { dataSnapshot ->
+
+                        dataSnapshot.getValue(Team::class.java)!!
+
+                    }
+
+                    teamList.postValue(_teamList)
+
+                }catch (e : Exception){
+
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+    }
+
+
 
 }
