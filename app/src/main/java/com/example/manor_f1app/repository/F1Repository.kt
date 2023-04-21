@@ -10,21 +10,23 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import java.lang.Exception
 
-class DriverRepository {
+class F1Repository {
 
     private val driverReference : DatabaseReference = FirebaseDatabase.getInstance().getReference("Driver")
+    private val teamReference : DatabaseReference = FirebaseDatabase.getInstance().getReference("Team")
+    private val scheduleReference : DatabaseReference = FirebaseDatabase.getInstance().getReference("Schedule")
 
-    @Volatile private var INSTANCE : DriverRepository?= null
+    @Volatile private var INSTANCE : F1Repository?= null
 
-    fun getInstance() : DriverRepository {
+    fun getInstance() : F1Repository {
         return INSTANCE ?: synchronized(this) {
-            val instance = DriverRepository()
+            val instance = F1Repository()
             INSTANCE = instance
             instance
         }
     }
 
-    fun loadDrivers(driverList : MutableLiveData<List<Driver>>){
+    fun loadDrivers(driverList: MutableLiveData<List<Driver>>){
 
         driverReference.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -51,7 +53,7 @@ class DriverRepository {
 
     fun loadTeams(teamList : MutableLiveData<List<Team>>){
 
-        driverReference.addValueEventListener(object : ValueEventListener{
+        teamReference.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 try {
