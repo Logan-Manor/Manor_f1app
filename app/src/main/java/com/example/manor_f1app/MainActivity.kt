@@ -1,30 +1,30 @@
 package com.example.manor_f1app
 
-import android.annotation.SuppressLint
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import com.example.manor_f1app.driver.DriverActivity
-import com.example.manor_f1app.team.TeamActivity
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+    }
 
-        val button = findViewById<Button>(R.id.button)
-        button.setOnClickListener {
-            val intent = Intent(this, DriverActivity::class.java)
-            startActivity(intent)
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        menuInflater.inflate(R.menu.nav_menu,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.nav_schedule -> Toast.makeText(this, "schedule selected", Toast.LENGTH_LONG).show()
+            R.id.nav_driver -> Toast.makeText(this, "driver selected", Toast.LENGTH_LONG).show()
+            R.id.nav_team -> Toast.makeText(this, "team selected", Toast.LENGTH_LONG).show()
         }
 
-        val button2 = findViewById<Button>(R.id.button2)
-        button2.setOnClickListener {
-            val intent = Intent(this, TeamActivity::class.java)
-            startActivity(intent)
-        }
-
+        return super.onOptionsItemSelected(item)
     }
 }

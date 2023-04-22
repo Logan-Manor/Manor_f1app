@@ -13,16 +13,25 @@
         android:theme="@style/Theme.Manor_f1app"
         tools:targetApi="31">
         <activity
-            android:name=".schedule.ScheduleDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".schedule.ScheduleActivity"
-            android:exported="false" />
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".team.TeamDetailActivity"
             android:exported="false" />
         <activity
             android:name=".team.TeamActivity"
+            android:exported="false" />
+        <activity
+            android:name=".schedule.ScheduleDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".schedule.ScheduleActivity"
             android:exported="false" />
         <activity
             android:name=".driver.DriverDetailActivity"
@@ -32,15 +41,6 @@
             android:exported="false"
             android:label="@string/title_activity_driver"
             android:theme="@style/Theme.Manor_f1app" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

@@ -7,8 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.manor_f1app.R
 
-
-class TeamAdapter (private val listener: MyClickListener) : RecyclerView.Adapter<TeamAdapter.MyViewHolder>() {
+class TeamAdapter (private val listener: MyClickListener) : RecyclerView.Adapter<TeamAdapter.MyViewHolder>(){
     private val teamList = ArrayList<Team>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -30,7 +29,7 @@ class TeamAdapter (private val listener: MyClickListener) : RecyclerView.Adapter
 
     override fun getItemCount() = teamList.size
 
-    fun updateTeamList(teamList : List<Team>){
+    fun updateteamList(teamList : List<Team>){
 
         this.teamList.clear()
         this.teamList.addAll(teamList)
@@ -41,7 +40,8 @@ class TeamAdapter (private val listener: MyClickListener) : RecyclerView.Adapter
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
         val rank : TextView = itemView.findViewById(R.id.rank)
-        val name : TextView = itemView.findViewById(R.id.teamname)
+        val name : TextView = itemView.findViewById(R.id.name)
+
 
         init {
             itemView.setOnClickListener {
@@ -49,10 +49,10 @@ class TeamAdapter (private val listener: MyClickListener) : RecyclerView.Adapter
                 val data = teamList.get(position)
 
                 val rank = data.rank
-                val name = data.name
-                val chief = data.chief
-                val driver1 = data.driver1
-                val driver2 = data.driver2
+                val name = data.name.toString()
+                val chief = data.chief.toString()
+                val driver1 = data.driver1.toString()
+                val driver2 = data.driver2.toString()
                 val championships = data.championships
 
                 listener.onClick(rank, name, chief, driver1, driver2, championships)

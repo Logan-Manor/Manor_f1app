@@ -52,32 +52,7 @@ class F1Repository {
         })
     }
 
-    fun loadTeams(teamList : MutableLiveData<List<Team>>){
-
-        teamReference.addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-
-                try {
-
-                    val _teamList : List<Team> = snapshot.children.map { dataSnapshot ->
-
-                        dataSnapshot.getValue(Team::class.java)!!
-
-                    }
-
-                    teamList.postValue(_teamList)
-
-                }catch (e : Exception){
-
-                }
-            }
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
-    }
-
-    fun loadSchedule(scheduleList : MutableLiveData<List<Schedule>>){
+    fun loadSchedules(scheduleList : MutableLiveData<List<Schedule>>){
         scheduleReference.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
 
@@ -90,6 +65,30 @@ class F1Repository {
                     }
 
                     scheduleList.postValue(_scheduleList)
+
+                }catch (e : Exception){
+
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+    }
+
+    fun loadTeams(teamList : MutableLiveData<List<Team>>){
+        teamReference.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                try {
+
+                    val _teamList : List<Team> = snapshot.children.map { dataSnapshot ->
+
+                        dataSnapshot.getValue(Team::class.java)!!
+
+                    }
+
+                    teamList.postValue(_teamList)
 
                 }catch (e : Exception){
 

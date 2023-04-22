@@ -1,10 +1,15 @@
 package com.example.manor_f1app.schedule
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.manor_f1app.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -12,12 +17,11 @@ import com.example.manor_f1app.R
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ScheduleFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class ScheduleFragment : Fragment() {
+private lateinit var viewModel : ScheduleViewModel
+private lateinit var scheduleRecyclerView: RecyclerView
+lateinit var adapter: ScheduleAdapter
+
+class ScheduleFragment : Fragment(), ScheduleAdapter.MyClickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -56,5 +60,44 @@ class ScheduleFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        scheduleRecyclerView = view.findViewById(R.id.recyclerview)
+        scheduleRecyclerView.layoutManager = LinearLayoutManager(context)
+        scheduleRecyclerView.setHasFixedSize(true)
+        adapter = ScheduleAdapter(this@ScheduleFragment)
+        scheduleRecyclerView.adapter = adapter
+
+        viewModel = ViewModelProvider(this).get(ScheduleViewModel::class.java)
+
+        viewModel.allSchedules.observe(viewLifecycleOwner, Observer {
+
+            adapter.updateScheduleList(it)
+
+        })
+
+    }
+
+    override fun onClick(round: Int?, name: String?, country: String?, track: String?, turns: Int?, first: Int?) {
+
+        val roundInput = round.toString()
+        val nameInput = name.toString()
+        val countryInput = country.toString()
+        val trackInput = track.toString()
+        val turnsInput = turns.toString()
+        val firstInput = first.toString()
+
+        Intent(activity, ScheduleDetailActivity::class.java).also {
+            it.putExtra("round", roundInput)
+            it.putExtra("name", nameInput)
+            it.putExtra("country", countryInput)
+            it.putExtra("track", trackInput)
+            it.putExtra("turns", turnsInput)
+            it.putExtra("first", firstInput)
+            startActivity(it)
+        }
     }
 }

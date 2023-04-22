@@ -2,10 +2,10 @@ package com.example.manor_f1app.team
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,10 +20,12 @@ private const val ARG_PARAM2 = "param2"
 private lateinit var viewModel : TeamViewModel
 private lateinit var teamRecyclerView: RecyclerView
 lateinit var adapter: TeamAdapter
-
+/**
+ * A simple [Fragment] subclass.
+ * Use the [TeamFragment.newInstance] factory method to
+ * create an instance of this fragment.
+ */
 class TeamFragment : Fragment(), TeamAdapter.MyClickListener {
-
-
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -41,7 +43,7 @@ class TeamFragment : Fragment(), TeamAdapter.MyClickListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_driver, container, false)
+        return inflater.inflate(R.layout.fragment_team, container, false)
     }
 
     companion object {
@@ -51,7 +53,7 @@ class TeamFragment : Fragment(), TeamAdapter.MyClickListener {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment Home.
+         * @return A new instance of fragment TeamFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
@@ -72,13 +74,13 @@ class TeamFragment : Fragment(), TeamAdapter.MyClickListener {
         teamRecyclerView.setHasFixedSize(true)
         adapter = TeamAdapter(this@TeamFragment)
         teamRecyclerView.adapter = adapter
-
+        
         viewModel = ViewModelProvider(this).get(TeamViewModel::class.java)
-
-        viewModel.allTeams.observe(viewLifecycleOwner, Observer {
-
-            adapter.updateTeamList(it)
-
+        
+        viewModel.allTeams.observe(viewLifecycleOwner, Observer { 
+            
+            adapter.updateteamList(it)
+            
         })
 
     }

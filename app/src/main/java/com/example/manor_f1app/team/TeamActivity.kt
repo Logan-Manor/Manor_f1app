@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.manor_f1app.R
-import com.example.manor_f1app.driver.DriverFragment
 
 class TeamActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
