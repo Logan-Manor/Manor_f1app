@@ -2,6 +2,7 @@ package com.example.manor_f1app.repository
 
 import androidx.lifecycle.MutableLiveData
 import com.example.manor_f1app.driver.Driver
+import com.example.manor_f1app.schedule.Schedule
 import com.example.manor_f1app.team.Team
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -76,6 +77,28 @@ class F1Repository {
         })
     }
 
+    fun loadSchedule(scheduleList : MutableLiveData<List<Schedule>>){
+        scheduleReference.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
 
+                try {
+
+                    val _scheduleList : List<Schedule> = snapshot.children.map { dataSnapshot ->
+
+                        dataSnapshot.getValue(Schedule::class.java)!!
+
+                    }
+
+                    scheduleList.postValue(_scheduleList)
+
+                }catch (e : Exception){
+
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+    }
 
 }
