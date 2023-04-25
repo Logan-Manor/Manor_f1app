@@ -45,28 +45,28 @@ class TeamDetailActivity : AppCompatActivity() {
 
         when (driver1){
             "Max Verstappen" -> driver1ImageView.setImageDrawable(resources.getDrawable(R.drawable.max))
-            "Max Verstappen" -> driver1ImageView.setImageDrawable(resources.getDrawable(R.drawable.red_bull))
-            "Max Verstappen" -> driver1ImageView.setImageDrawable(resources.getDrawable(R.drawable.red_bull))
-            "Max Verstappen" -> driver1ImageView.setImageDrawable(resources.getDrawable(R.drawable.red_bull))
-            "Max Verstappen" -> driver1ImageView.setImageDrawable(resources.getDrawable(R.drawable.red_bull))
-            "Max Verstappen" -> driver1ImageView.setImageDrawable(resources.getDrawable(R.drawable.red_bull))
-            "Max Verstappen" -> driver1ImageView.setImageDrawable(resources.getDrawable(R.drawable.red_bull))
-            "Max Verstappen" -> driver1ImageView.setImageDrawable(resources.getDrawable(R.drawable.red_bull))
-            "Max Verstappen" -> driver1ImageView.setImageDrawable(resources.getDrawable(R.drawable.red_bull))
-            "Max Verstappen" -> driver1ImageView.setImageDrawable(resources.getDrawable(R.drawable.red_bull))
+            "Fernando Alonso" -> driver1ImageView.setImageDrawable(resources.getDrawable(R.drawable.fernando))
+            "Lewis Hamilton" -> driver1ImageView.setImageDrawable(resources.getDrawable(R.drawable.lewis))
+            "Charles Leclerc" -> driver1ImageView.setImageDrawable(resources.getDrawable(R.drawable.charles))
+            "Lando Norris" -> driver1ImageView.setImageDrawable(resources.getDrawable(R.drawable.lando))
+            "Pierre Gasly" -> driver1ImageView.setImageDrawable(resources.getDrawable(R.drawable.pierre))
+            "Kevin Magnussen" -> driver1ImageView.setImageDrawable(resources.getDrawable(R.drawable.kevin))
+            "Valtteri Bottas" -> driver1ImageView.setImageDrawable(resources.getDrawable(R.drawable.valtteri))
+            "Yuki Tsunoda" -> driver1ImageView.setImageDrawable(resources.getDrawable(R.drawable.yuki))
+            "Alexander Albon" -> driver1ImageView.setImageDrawable(resources.getDrawable(R.drawable.alexander))
         }
 
         when (driver2){
             "Sergio Perez" -> driver2ImageView.setImageDrawable(resources.getDrawable(R.drawable.sergio))
-            "Sergio Perez" -> driver2ImageView.setImageDrawable(resources.getDrawable(R.drawable.red_bull))
-            "Sergio Perez" -> driver2ImageView.setImageDrawable(resources.getDrawable(R.drawable.red_bull))
-            "Sergio Perez" -> driver2ImageView.setImageDrawable(resources.getDrawable(R.drawable.red_bull))
-            "Sergio Perez" -> driver2ImageView.setImageDrawable(resources.getDrawable(R.drawable.red_bull))
-            "Sergio Perez" -> driver2ImageView.setImageDrawable(resources.getDrawable(R.drawable.red_bull))
-            "Sergio Perez" -> driver2ImageView.setImageDrawable(resources.getDrawable(R.drawable.red_bull))
-            "Sergio Perez" -> driver2ImageView.setImageDrawable(resources.getDrawable(R.drawable.red_bull))
-            "Sergio Perez" -> driver2ImageView.setImageDrawable(resources.getDrawable(R.drawable.red_bull))
-            "Sergio Perez" -> driver2ImageView.setImageDrawable(resources.getDrawable(R.drawable.red_bull))
+            "Lance Stroll" -> driver2ImageView.setImageDrawable(resources.getDrawable(R.drawable.lance))
+            "George Russell" -> driver2ImageView.setImageDrawable(resources.getDrawable(R.drawable.george))
+            "Carlos Sainz" -> driver2ImageView.setImageDrawable(resources.getDrawable(R.drawable.carlos))
+            "Oscar Piastri" -> driver2ImageView.setImageDrawable(resources.getDrawable(R.drawable.oscar))
+            "Esteban Ocon" -> driver2ImageView.setImageDrawable(resources.getDrawable(R.drawable.esteban))
+            "Nico Hulkenberg" -> driver2ImageView.setImageDrawable(resources.getDrawable(R.drawable.nico))
+            "Zhou Guanyu" -> driver2ImageView.setImageDrawable(resources.getDrawable(R.drawable.zhou))
+            "Nyck De Vries" -> driver2ImageView.setImageDrawable(resources.getDrawable(R.drawable.nyck))
+            "Logan Sargeant" -> driver2ImageView.setImageDrawable(resources.getDrawable(R.drawable.logan))
         }
 
 
